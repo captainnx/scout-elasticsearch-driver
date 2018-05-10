@@ -27,7 +27,6 @@ class ScoutElasticServiceProvider extends ServiceProvider
         $this->commands([
             // make commands
             IndexConfiguratorMakeCommand::class,
-//            SearchableModelMakeCommand::class,
             SearchRuleMakeCommand::class,
 
             // elastic commands
