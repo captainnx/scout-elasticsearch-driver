@@ -1,0 +1,13 @@
+{
+    "name": "captainnx/scout-elasticsearch-driver",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "captain",
+            "email": "vipiscaptain@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

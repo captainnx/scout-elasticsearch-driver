@@ -1,0 +1,18 @@
+<?php
+
+namespace DummyNamespace;
+
+use ScoutElastic\IndexConfigurator;
+use ScoutElastic\Migratable;
+
+class DummyClass extends IndexConfigurator
+{
+    use Migratable;
+
+    /**
+     * @var array
+     */
+    protected $settings = [
+        //
+    ];
+}
