@@ -134,6 +134,78 @@ class FilterBuilder extends Builder
 
         return $this;
     }
+	
+	/**
+     * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html Term query
+     * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html Range query
+     *
+     * Supported operators are =, &gt;, &lt;, &gt;=, &lt;=, &lt;&gt;
+     * @param string $field Field name
+     * @param mixed $value Scalar value or an array
+     * @return $this
+     */
+    public function orWhere($field, $value)
+    {
+        $args = func_get_args();
+
+        if (count($args) == 3) {
+            list($field, $operator, $value) = $args;
+        } else {
+            $operator = '=';
+        }
+
+        switch ($operator) {
+            case '=':
+                $this->wheres['should'][] = [
+                    'term' => [
+                        $field => $value
+                    ]
+                ];
+                break;
+
+            case '>':
+                $this->wheres['should'][] = [
+                    'range' => [
+                        $field => [
+                            'gt' => $value
+                        ]
+                    ]
+                ];
+                break;
+
+            case '<':
+                $this->wheres['should'][] = [
+                    'range' => [
+                        $field => [
+                            'lt' => $value
+                        ]
+                    ]
+                ];
+                break;
+
+            case '>=':
+                $this->wheres['should'][] = [
+                    'range' => [
+                        $field => [
+                            'gte' => $value
+                        ]
+                    ]
+                ];
+                break;
+
+            case '<=':
+                $this->wheres['should'][] = [
+                    'range' => [
+                        $field => [
+                            'lte' => $value
+                        ]
+                    ]
+                ];
+                break;
+        }
+
+        return $this;
+    }
 
     /**
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-query.html Terms query
