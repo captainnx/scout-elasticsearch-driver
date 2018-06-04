@@ -202,6 +202,15 @@ class FilterBuilder extends Builder
                     ]
                 ];
                 break;
+
+            case '!=':
+            case '<>':
+                $this->wheres['should'][]['bool']['must_not'] = [
+                    'term' => [
+                        $field => $value
+                    ]
+                ];
+                break;
         }
 
         return $this;
